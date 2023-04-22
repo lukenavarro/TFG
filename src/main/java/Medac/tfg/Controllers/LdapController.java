@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-@AllArgsConstructor
-@NoArgsConstructor
 public class LdapController {
     public void getUsuario(@PathVariable String usuario, @PathVariable String password){
     }
