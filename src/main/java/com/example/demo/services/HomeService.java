@@ -11,4 +11,6 @@ public interface HomeService {
     User getUsersWithHomeByID(Long id);
 
     User getUserRfidWithHomeByID(Long id,String rfidCode);
+
+    Home addHome(Home home);
 }

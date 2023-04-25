@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,5 +45,14 @@ public class HomeServiceImpl implements HomeService {
                 return null;
             }
         }
+    }
+
+    @Override
+    public Home addHome(Home home) {
+        List<Long> listIDS = new ArrayList<>();
+        for (Home home1:this.getAllHomes()) {
+            listIDS.add(home1.getID());
+        }
+        return listIDS.contains(home.getID())? null:homeRepository.save(home);
     }
 }
