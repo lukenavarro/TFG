@@ -1,14 +1,16 @@
 package com.example.demo.services;
 
+import com.example.demo.DTO.HomeDTO;
+import com.example.demo.DTO.UserDTO;
 import com.example.demo.model.entities.Home;
 import com.example.demo.model.entities.User;
 
 import java.util.List;
 
 public interface HomeService {
-    List<Home> getAllHomes();
+    List<HomeDTO> getAllHomes();
 
-    User getUsersWithHomeByID(Long id);
+    UserDTO getUsersWithHomeByID(Long id);
 
-    User getUserRfidWithHomeByID(Long id,String rfidCode);
+    UserDTO getUserRfidWithHomeByID(Long id,String rfidCode);
 }

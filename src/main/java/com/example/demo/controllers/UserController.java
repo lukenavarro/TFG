@@ -19,20 +19,24 @@ public class UserController {
 
     private final UserService userService;
 
+
+    @CrossOrigin
     @GetMapping("/login")
     public ResponseEntity<Optional<User>> getUserWithAuth(@RequestParam("user") String userName, @RequestParam("pass") String password){
         Optional<User> user = Optional.ofNullable(userService.getUserWithUserNameAndPassword(userName,password));
         if (user.isEmpty()){
-            return new ResponseEntity<>(user, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(user, HttpStatus.FORBIDDEN);
         }else{
             return new ResponseEntity<>(user,HttpStatus.OK);
         }
     }
+
+    @CrossOrigin
     @PostMapping("/addUser")
     public ResponseEntity<Optional<User>> addUser(@RequestBody User user){
         Optional<User> userOptional = Optional.ofNullable(userService.addUser(user));
         if(userOptional.isEmpty()){
-            return new ResponseEntity<>(userOptional,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(userOptional,HttpStatus.FORBIDDEN);
         }else{
             return new ResponseEntity<>(userOptional,HttpStatus.OK);
         }

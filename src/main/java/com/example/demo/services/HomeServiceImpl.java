@@ -1,5 +1,9 @@
 package com.example.demo.services;
 
+import com.example.demo.DTO.HomeDTO;
+import com.example.demo.DTO.UserDTO;
+import com.example.demo.mapper.HomeDTOMapper;
+import com.example.demo.mapper.UserDTOMapper;
 import com.example.demo.model.entities.Home;
 import com.example.demo.model.entities.User;
 import com.example.demo.model.repositories.HomeRepository;
@@ -20,18 +24,22 @@ public class HomeServiceImpl implements HomeService {
 
     private final UserRepository userRepository;
 
+    private final UserDTOMapper userDTOMapper;
+
+    private final HomeDTOMapper homeDTOMapper;
+
     @Override
-    public List<Home> getAllHomes() {
-        return homeRepository.findAll();
+    public List<HomeDTO> getAllHomes() {
+        return homeDTOMapper.listHomeToHomeDTO(homeRepository.findAll());
     }
 
-    public User getUsersWithHomeByID(Long id){
+    public UserDTO getUsersWithHomeByID(Long id){
         Optional<Home> home = homeRepository.findById(id);
-        return home.map(Home::getUser).orElse(null);
+        return userDTOMapper.userToUserDTO(home.map(Home::getUser).orElse(null));
     }
 
     @Override
-    public User getUserRfidWithHomeByID(Long id ,String rfidCode) {
+    public UserDTO getUserRfidWithHomeByID(Long id ,String rfidCode) {
         Optional<Home> home  =homeRepository.findById(id);
         User user;
         if (home.isEmpty()){
@@ -39,7 +47,7 @@ public class HomeServiceImpl implements HomeService {
         }else{
             user = home.get().getUser();
             if (user.getRfidCode().equals(rfidCode)){
-                return user;
+                return userDTOMapper.userToUserDTO(user);
             }else{
                 return null;
             }
