@@ -23,7 +23,7 @@ public class HomeDTO {
     @JsonProperty(value = "Numero")
     private Long number;
 
-    @JsonProperty(value = "Codigo Postal")
+    @JsonProperty(value = "CodigoPostal")
     private Long postalCode;
 
     @JsonProperty(value = "Ciudad")

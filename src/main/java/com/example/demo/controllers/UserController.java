@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/Test")
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserController {
 
     private final UserService userService;
