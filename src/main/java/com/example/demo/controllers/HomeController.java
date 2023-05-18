@@ -4,7 +4,6 @@ import com.example.demo.DTO.HomeDTO;
 import com.example.demo.DTO.UserDTO;
 import com.example.demo.services.HomeService;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +12,9 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/Test")
+@RequestMapping("/api")
 @AllArgsConstructor
-public class HomeControllerImpl {
+public class HomeController {
 
     private final HomeService homeService;
 
